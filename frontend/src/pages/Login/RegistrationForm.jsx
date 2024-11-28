@@ -1,194 +1,159 @@
 import React, { useState } from "react";
 import "./RegistrationForm.css";
+import {
+  Person,
+  Email,
+  Phone,
+  Home,
+  LocationOn,
+  Badge,
+  Business,
+  Password,
+  Visibility,
+  VisibilityOff,
+} from "@mui/icons-material";
 
 const RegistrationForm = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phoneNumber: "",
-    address: "",
-    pincode: "",
-    govtIdType: "", // Added missing field
-    govtId: "",
-    businessLicense: null, // Corrected file handling
-    gstNumber: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const [action, setAction] = useState("Register Admin");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    // Handle file input separately
-    if (e.target.type === "file") {
-      setFormData({ ...formData, [name]: e.target.files[0] });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Add form validation logic here if needed
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
-
-    console.log(formData); // Implement actual form submission logic
-  };
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+  const toggleConfirmPasswordVisibility = () =>
+    setShowConfirmPassword(!showConfirmPassword);
 
   return (
-    <div className="register-container">
-      <h1>Admin Registration</h1>
-      <form className="register-form" onSubmit={handleSubmit}>
-        <label>Name </label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Enter your name"
-          required
-        />
+    <div>
+      
+      {/* <nav className="navbar">
+        <div className="navbar-brand">Admin Portal</div>
+        <div className="navbar-links">
+          <button onClick={() => setAction("Register Admin")}>
+            Register Admin
+          </button>
+          <button onClick={() => setAction("Admin Login")}>Admin Login</button>
+          <button onClick={() => setAction("Super Admin Login")}>
+            Super Admin Login
+          </button>
+        </div>
+      </nav> */}
 
-        <label>Email </label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="Enter your email"
-          required
-        />
-
-        <label>Phone Number </label>
-        <input
-          type="tel"
-          name="phoneNumber"
-          value={formData.phoneNumber}
-          onChange={handleChange}
-          placeholder="Enter your phone number"
-          required
-        />
-
-        <label>Address </label>
-        <textarea
-          name="address"
-          value={formData.address}
-          onChange={handleChange}
-          placeholder="Enter your address"
-          required
-        ></textarea>
-
-        <label>Pincode </label>
-        <input
-          type="text"
-          name="pincode"
-          value={formData.pincode}
-          onChange={handleChange}
-          placeholder="Enter your pincode"
-          required
-        />
-
-        <label>Government ID </label>
-        <select
-          name="govtIdType"
-          value={formData.govtIdType}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Select ID Type</option>
-          <option value="pan">Pan Card</option>
-          <option value="aadhaar">Aadhaar Number</option>
-          <option value="drivingLicense">Driving License</option>
-        </select>
-
-        {/* Conditional Rendering of Government ID Input */}
-        {formData.govtIdType === "pan" && (
-          <>
-            <label>Pan Number</label>
-            <input
-              type="text"
-              name="govtId"
-              value={formData.govtId}
-              onChange={handleChange}
-              placeholder="Enter your PAN Number"
-              required
-            />
-          </>
+      
+      <div className="container1">
+        <div className="header">
+          <div className="text">{action}</div>
+          <div className="underline"></div>
+        </div>
+        {action === "Register Admin" && (
+          <div className="inputs">
+            <div className="input">
+              <Person className="icon" />
+              <input type="text" placeholder="Name" />
+            </div>
+            <div className="input">
+              <Email className="icon" />
+              <input type="email" placeholder="Email Id" />
+            </div>
+            <div className="input">
+              <Phone className="icon" />
+              <input type="text" placeholder="Phone Number" />
+            </div>
+            <div className="input">
+              <Home className="icon" />
+              <input type="text" placeholder="Address" />
+            </div>
+            <div className="input">
+              <LocationOn className="icon" />
+              <input type="text" placeholder="Pin Code" />
+            </div>
+            <div className="input">
+              <Badge className="icon" />
+              <input type="text" placeholder="Government ID" />
+            </div>
+            <div className="input">
+              <Business className="icon" />
+              <input type="text" placeholder="Business License" />
+            </div>
+            <div className="input">
+              <Business className="icon" />
+              <input type="text" placeholder="GST Number" />
+            </div>
+            <div className="input password">
+              <Password className="icon" />
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+              />
+              <span className="eye-icon" onClick={togglePasswordVisibility}>
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </span>
+            </div>
+            <div className="input password">
+              <Password className="icon" />
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                placeholder="Confirm Password"
+              />
+              <span
+                className="eye-icon"
+                onClick={toggleConfirmPasswordVisibility}
+              >
+                {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+              </span>
+            </div>
+          </div>
         )}
-
-        {formData.govtIdType === "aadhaar" && (
-          <>
-            <label>Aadhaar Number</label>
-            <input
-              type="text"
-              name="govtId"
-              value={formData.govtId}
-              onChange={handleChange}
-              placeholder="Enter your Aadhaar Number"
-              required
-            />
-          </>
+        {action === "Admin Login" && (
+          <div className="inputs">
+            <div className="input">
+              <Email className="icon" />
+              <input type="email" placeholder="Email Id" />
+            </div>
+            <div className="input password">
+              <Password className="icon" />
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+              />
+              <span className="eye-icon" onClick={togglePasswordVisibility}>
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </span>
+            </div>
+          </div>
         )}
-
-        {formData.govtIdType === "drivingLicense" && (
-          <>
-            <label>Driving License</label>
-            <input
-              type="text"
-              name="govtId"
-              value={formData.govtId}
-              onChange={handleChange}
-              placeholder="Enter your Driving License Number"
-              required
-            />
-          </>
+        {action === "Super Admin Login" && (
+          <div className="inputs">
+            <div className="input">
+              <Email className="icon" />
+              <input type="email" placeholder="Super Admin Email" />
+            </div>
+            <div className="input password">
+              <Password className="icon" />
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Super Admin Password"
+              />
+              <span className="eye-icon" onClick={togglePasswordVisibility}>
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </span>
+            </div>
+          </div>
         )}
-
-        <label>Business License </label>
-        <input
-          type="file"
-          name="businessLicense"
-          onChange={handleChange}
-          placeholder="Upload your business license"
-          required
-        />
-
-        <label>GST Number </label>
-        <input
-          type="text"
-          name="gstNumber"
-          value={formData.gstNumber}
-          onChange={handleChange}
-          placeholder="Enter your GST number"
-          required
-        />
-
-        <label>Password </label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          placeholder="Enter your password"
-          required
-        />
-
-        <label>Confirm Password </label>
-        <input
-          type="password"
-          name="confirmPassword"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-          placeholder="Confirm your password"
-          required
-        />
-
-        <button type="submit">Register</button>
-      </form>
+        <div className="forgot-password">
+          {action !== "Register Admin" && (
+            <span>Lost Password? Click here</span>
+          )}
+        </div>
+        <div className="submit-container">
+          <button className="submit">
+            {action === "Register Admin"
+              ? "Register"
+              : action === "Admin Login"
+              ? "Login"
+              : "Super Admin Login"}
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
