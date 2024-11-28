@@ -1,0 +1,137 @@
+/* .register-container {
+    width: 400px;
+    margin: auto;
+    margin-top: 100px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .register-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .register-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .register-form label {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .register-form input,
+  .register-form textarea {
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .register-form button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .register-form button:hover {
+    background-color: #0056b3;
+  } */
+
+
+
+  
+
+
+
+
+
+
+
+  .register-container {
+    width: 500px; /* Maintained width */
+    margin: 0 auto; /* Center align horizontally */
+    margin-top: 60px; /* Reduced top margin */
+    background: #fff; /* Light background for contrast */
+    padding: 15px; /* Reduced padding for smaller height */
+    border-radius: 10px; /* Slightly rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Softer shadow for a modern look */
+}
+
+.register-container h1 {
+    text-align: center; /* Center the title */
+    color: #333; /* Neutral dark color for text */
+    margin-bottom: 20px; /* Reduced space below the title */
+    font-size: 1.8rem; /* Larger font size for emphasis */
+    font-weight: bold;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
+}
+
+.register-form label {
+    font-weight: 500; /* Slightly bold for clarity */
+    margin-top: 10px; /* Reduced space above the labels */
+    font-size: 1rem; /* Standard font size */
+}
+
+.register-form input,
+.register-form textarea {
+    padding: 10px; /* Slightly reduced padding */
+    margin-top: 5px; /* Small space above each input */
+    font-size: 1rem; /* Consistent text size */
+    border: 1px solid #ccc; /* Neutral border color */
+    border-radius: 6px; /* Slightly rounded inputs */
+    outline: none; /* Remove default focus outline */
+    box-sizing: border-box; /* Prevent overflow */
+}
+
+.register-form input:focus,
+.register-form textarea:focus {
+    border-color: #007bff; /* Highlight border on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Subtle glow on focus */
+}
+
+.register-form textarea {
+    resize: none; /* Prevent resizing of the text area */
+}
+
+.register-form button {
+    margin-top: 20px; /* Reduced space above the button */
+    padding: 10px; /* Slightly smaller padding */
+    background-color: #007bff; /* Primary button color */
+    color: #fff; /* White text */
+    border: none; /* Remove default border */
+    border-radius: 6px; /* Slightly rounded corners */
+    font-size: 1.1rem; /* Reduced button font size */
+    font-weight: bold;
+    cursor: pointer; /* Pointer cursor for interactivity */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.register-form button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+@media (max-width: 600px) {
+    .register-container {
+        width: 90%; /* Make the form responsive for smaller screens */
+        margin-top: 40px; /* Adjust spacing */
+    }
+
+    .register-form button {
+        font-size: 1rem; /* Adjust button size on smaller screens */
+    }
+}
