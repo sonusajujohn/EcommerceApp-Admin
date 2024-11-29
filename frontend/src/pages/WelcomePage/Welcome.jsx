@@ -20,6 +20,7 @@ const Welcome = () => {
             className="card"
     
           >
+            {/* hello */}
             <h3>Login as Super Admin</h3>
           </div>
           <div className="card" >
