@@ -11,6 +11,7 @@ import {
   Password,
   Visibility,
   VisibilityOff,
+  Lock,
 } from "@mui/icons-material";
 
 const RegistrationForm = () => {
@@ -56,7 +57,7 @@ const RegistrationForm = () => {
             </div>
             <div className="input">
               <Phone className="icon" />
-              <input type="text" placeholder="Phone Number" />
+              <input type="number" placeholder="Phone Number" />
             </div>
             <div className="input">
               <Home className="icon" />
@@ -72,14 +73,14 @@ const RegistrationForm = () => {
             </div>
             <div className="input">
               <Business className="icon" />
-              <input type="text" placeholder="Business License" />
+              <input type="file" placeholder="Business License" />
             </div>
             <div className="input">
               <Business className="icon" />
-              <input type="text" placeholder="GST Number" />
+              <input type="number" placeholder="GST Number" />
             </div>
             <div className="input password">
-              <Password className="icon" />
+            <Lock className="icon" />
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
@@ -89,7 +90,7 @@ const RegistrationForm = () => {
               </span>
             </div>
             <div className="input password">
-              <Password className="icon" />
+            <Lock className="icon" />
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 placeholder="Confirm Password"

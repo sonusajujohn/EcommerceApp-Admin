@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
-  background-color: #3c009d;
+  background-color: #23395d;
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -16,7 +16,7 @@
 
 .navbar-links button {
   margin-left: 25px;
-  background: #4c00b4;
+  background: #23395d;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -27,7 +27,7 @@
 }
 
 .navbar-links button:hover {
-  background-color: #2a007d;
+  background-color:#23395d;
 } 
 
 /* Main Form Container */
@@ -50,7 +50,7 @@
 }
 
 .text {
-  color: #3c009d;
+  color: #23395d;
   font-size: 28px;
   font-weight: bold;
 }
@@ -58,7 +58,7 @@
 .underline {
   width: 100px;
   height: 4px;
-  background: #4c00b4;
+  background: #23395d;
   margin: 12px auto 0;
   border-radius: 2px;
 }
@@ -80,12 +80,12 @@
 }
 
 .input:focus-within {
-  border-color: #4c00b4;
+  border-color: #23395d;
 }
 
 .input .icon {
   font-size: 24px;
-  color: #3c009d;
+  color: #23395d;
   margin-right: 15px;
 }
 
@@ -105,10 +105,10 @@
 .password .eye-icon {
   cursor: pointer;
   font-size: 20px;
-  color: #3c009d;
+  color: #23395d;
 }
 
-/* Forgot Password */
+
 .forgot-password {
   margin-top: 20px;
   text-align: right;
@@ -117,7 +117,7 @@
 }
 
 .forgot-password span {
-  color: #4c00b4;
+  color: #23395d;
   cursor: pointer;
   font-weight: bold;
   text-decoration: underline;
@@ -130,10 +130,10 @@
 }
 
 .submit {
-  background: #4c00b4;
+  background: #23395d;
   color: white;
-  padding: 14px 50px;
-  font-size: 16px;
+  padding: 12px 100px;
+  font-size: 18px;
   font-weight: bold;
   border-radius: 6px;
   border: none;
@@ -142,7 +142,7 @@
 }
 
 .submit:hover {
-  background: #3c009d;
+  background: #3352cb;
 }
 
 

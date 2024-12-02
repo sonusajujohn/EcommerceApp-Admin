@@ -12,18 +12,13 @@ const Welcome = () => {
         <source src="/853958-hd_1920_1080_30fps.mp4" type="video/mp4" />
        
       </video>
-
+      
       <div className="welcome-content">
         <h1>Welcome to the Admin Portal</h1>
         <div className="card-container">
-          <div
-            className="card"
-    
-          >
-            {/* hello */}
-            <h3>Login as Super Admin</h3>
-          </div>
-          <div className="card" >
+        
+          <div className="card" 
+          onClick={()=>{navigate("/login")}}>
             <h3>Login as Admin</h3>
           </div>
           <div
