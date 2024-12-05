@@ -1,13 +1,15 @@
 import React from "react";
 import "./Admindashboard.css";
+import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
+  const navigate = useNavigate();
   return (
     <div className="dashboard-container">
       <div className="sidebar">
         <h2>Admin Dashboard</h2>
         <ul>
-          <li>Product Management</li>
+          <li onClick={()=>{navigate('/productlist')}}>Product List</li>
           <li>Category Management</li>
           <li>Order Details</li>
           <li>Settings</li>

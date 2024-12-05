@@ -5,7 +5,8 @@ import AdminDashboard from './pages/AdminDashboard/Admindashboard'
 import RegistrationForm from './pages/Login/RegistrationForm'
 import Welcome from './pages/WelcomePage/Welcome'
 import Login from './pages/Login/Login'
-
+import ProductList from './components/Product Management/Productlist'
+import AddProduct from './components/Product Management/Addproduct'
 
 
 const App = () => {
@@ -17,7 +18,8 @@ const App = () => {
         <Route path='/registrationform' element={<RegistrationForm/>}></Route>
         <Route path='/admindashboard' element={<AdminDashboard/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
-       
+        <Route path='/productlist' element={<ProductList/>}></Route>
+        <Route path='/addproduct' element={<AddProduct/>}></Route>
       </Routes>
     </div>
   )
