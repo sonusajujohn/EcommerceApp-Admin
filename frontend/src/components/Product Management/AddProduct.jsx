@@ -25,7 +25,8 @@ const AddProduct = () => {
     alert("Product added successfully!");
     console.log({ ...formData, image: file });
   };
-
+ 
+  
   return (
     <div className="addProduct">
       <div className="dashboard-container">
@@ -38,9 +39,9 @@ const AddProduct = () => {
             <li>Settings</li>
           </ul>
         </div> */}
-        <div className="main-content">
+        <div className="main-content1">
           <h1>Add New Product</h1>
-          <div className="formContainer">
+          <div className="formContainer1">
           
             <div className="imageUpload">
               <img
@@ -103,6 +104,19 @@ const AddProduct = () => {
                   onChange={handleChange}
                 />
               </div>
+
+
+              <div className="formInput">
+                <label>Offer</label>
+                <input
+                  type="text"
+                  name="productName"
+                  placeholder="Enter offerPrice"
+                  value={formData.productName}
+                  onChange={handleChange}
+                />
+              </div>
+
               <div className="formInput">
                 <label>Description</label>
                 <textarea

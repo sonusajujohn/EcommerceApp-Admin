@@ -7,6 +7,7 @@ import Welcome from './pages/WelcomePage/Welcome'
 import Login from './pages/Login/Login'
 import ProductList from './components/Product Management/Productlist'
 import AddProduct from './components/Product Management/Addproduct'
+import CategoryManage from './components/Product Management/CategoryManage'
 
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/productlist' element={<ProductList/>}></Route>
         <Route path='/addproduct' element={<AddProduct/>}></Route>
+        <Route path='/category' element={<CategoryManage/>}></Route>
       </Routes>
     </div>
   )

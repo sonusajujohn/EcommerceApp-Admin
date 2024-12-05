@@ -2,7 +2,7 @@ import "./ProductList.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AdminDashboard from "../../pages/AdminDashboard/Admindashboard";
+
 
 const ProductList = () => {
   const navigate = useNavigate();
@@ -56,6 +56,8 @@ const ProductList = () => {
       width: 200,
       renderCell: (params) => {
         return (
+          
+          
           <div className="cellAction">
             <button
               className="viewButton"
@@ -89,22 +91,24 @@ const ProductList = () => {
 
   return (
     <>
-    <AdminDashboard/>
-    <div className="productlist">
-      <div className="productlistTitle">
+    {/* <AdminDashboard/> */}
+    <div className="productlist1">
+      <div className="productlistTitle1">
         Product Listing Page
         <button className="link" onClick={handleAddNew}>
           Add New
         </button>
       </div>
-      <DataGrid
-        className="datagrid"
-        rows={data}
-        columns={[...productColumns, ...actionColumn]}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-      />
+      <div style={{ width: '100%', height: '400px' }}>
+  <DataGrid
+    className="datagrid"
+    rows={data}
+    columns={[...productColumns, ...actionColumn]}
+    pageSize={5}
+    rowsPerPageOptions={[5]}
+    checkboxSelection
+  />
+</div>
     </div>
     </>
   );
