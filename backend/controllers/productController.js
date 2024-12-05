@@ -6,7 +6,7 @@ import path from 'path';
 
 const addProduct=async (req,res)=>{
     let image_filename=`${req.file.filename}`;
-    const med=new medModel({
+    const product=new medModel({
         name:req.body.name,
         description:req.body.description,
         price:req.body.price,
@@ -14,7 +14,7 @@ const addProduct=async (req,res)=>{
         image:image_filename
     })
     try {
-        await med.save();
+        await product.save();
         res.json({success:true,message:"Medicine Successfully Added"})
     } catch (error) {
         console.log(error);
@@ -39,7 +39,7 @@ const listMed=async (req,res)=>{
 
 const removemed=async (req,res)=>{
     try {
-        const med=await medModel.findById(req.body.id);
+        const product=await medModel.findById(req.body.id);
         fs.unlink(`uploads/${med.image}`,()=>{});
 
         await medModel.findByIdAndDelete(req.body.id);

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { Email, Lock, Visibility, VisibilityOff } from "@mui/icons-material";
+import { Navigate, useNavigate } from "react-router-dom";
+
 
 const InputField = ({
   type,
@@ -11,6 +13,8 @@ const InputField = ({
   onChange,
   toggleVisibility,
 }) => (
+
+  
   <div className="inputField">
     {Icon && <Icon className="inputIcon" />}
     <label htmlFor={type} className="visuallyHidden">
@@ -39,14 +43,28 @@ const InputField = ({
 );
 
 export default function Login() {
+  const navigate=useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    alert(`Logging in with Email: ${email}`);
+  
+    // Hardcoded credentials for demonstration
+    const adminEmail = "admin@gmail.com";
+    const adminPassword = "12345";
+  
+    if (email === adminEmail && password === adminPassword) {
+      alert("Login successful!");
+      navigate('/admindashboard');
+    } else {
+      alert("Invalid credentials. Please try again.");
+    }
   };
+  
+
+  
 
   return (
     <main className="loginContainer">

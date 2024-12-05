@@ -15,7 +15,7 @@ const addadmin=async (req,res)=>{
     })
     try {
         await admin.save();
-        res.json({success:true,message:"Medicine Successfully Added"})
+        res.json({success:true,message:"Admin Added Successfully"})
     } catch (error) {
         console.log(error);
         res.json({success:false,message:"Error"})
@@ -40,7 +40,7 @@ const listadmin=async (req,res)=>{
 const deleteadmin=async (req,res)=>{
     try {
         const admin=await adminModel.findById(req.body.id);
-        fs.unlink(`uploads/${med.image}`,()=>{});
+        fs.unlink(`uploads/${admin.image}`,()=>{});
 
         await adminModel.findByIdAndDelete(req.body.id);
         res.json({success:true,message:'med removed'});
