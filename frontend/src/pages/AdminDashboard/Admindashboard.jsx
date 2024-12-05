@@ -13,7 +13,7 @@ const AdminDashboard = () => {
           <li>Category Management</li>
           <li>Order Details</li>
           <li>Settings</li>
-          <li>Logout</li>
+          <li onClick={()=>{navigate('/')}}>Logout</li>
         </ul>
       </div>
       <div className="main-content">

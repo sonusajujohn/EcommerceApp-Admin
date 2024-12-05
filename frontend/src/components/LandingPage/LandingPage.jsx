@@ -70,7 +70,7 @@ function LandingPage() {
         </ul>
         <ul className="nav__links nav__right">
           <li><a href="#">Cart</a></li>
-          <li><button className="buttonlog" onClick={() => { navigate('/registrationform'); }}>Login/Register</button></li>
+          <li><button className="buttonlog" onClick={() => { navigate('/login'); }}>Login/Register</button></li>
           <li><button className="buttonlog" onClick={() => { navigate('/welcome'); }}>Seller</button></li>
         </ul>
       </nav>
