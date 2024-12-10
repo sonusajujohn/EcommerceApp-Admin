@@ -1,55 +1,61 @@
-import medModel from "../model/adminModel";
-import fs from 'fs'
-import path from 'path';
+const ProductModel = require('../model/productModel'); // Import the product model
 
-//add med item
-
-const addProduct=async (req,res)=>{
-    let image_filename=`${req.file.filename}`;
-    const product=new medModel({
-        name:req.body.name,
-        description:req.body.description,
-        price:req.body.price,
-        category:req.body.category,
-        image:image_filename
-    })
+// Add a product
+const addproduct = async (req, res) => {
     try {
-        await product.save();
-        res.json({success:true,message:"Medicine Successfully Added"})
+        const { productName, productNumber, category, price, description } = req.body;
+        const image = req.file ? req.file.filename : null;
+
+        // Check if all required fields are provided
+        if (!productName || !productNumber || !category || !price || !description ) {
+            return res.status(400).json({ message: "All fields are required" });
+        }
+
+        // Create a new product instance
+        const newProductModel = new ProductModel({
+            productName,
+            productNumber,
+            category,
+            price,
+            description,
+            image,
+        });
+
+        // Save the product to the database
+        await newProductModel.save();
+
+        res.status(201).json({ message: "Product added successfully", product: newProductModel });
     } catch (error) {
-        console.log(error);
-        res.json({success:false,message:"Error"})
+        res.status(500).json({ message: "Error adding product", error: error.message });
     }
+};
 
-    
-}
-
-//add med list
-const listMed=async (req,res)=>{
+// List all products
+const listproduct = async (req, res) => {
     try {
-      const meds=await medModel.find({});
-      res.json({success:true,data:meds})
+        const products = await ProductModel.find(); // Retrieve all products from the database
+        res.status(200).json({ products });
     } catch (error) {
-      console.log(error);
-      res.json({success:false,message:'Error'})
+        res.status(500).json({ message: "Error retrieving products", error: error.message });
     }
-}
+};
 
-//remove med item
-
-const removemed=async (req,res)=>{
+// Delete a product
+const deleteproduct = async (req, res) => {
     try {
-        const product=await medModel.findById(req.body.id);
-        fs.unlink(`uploads/${med.image}`,()=>{});
+        const { productNumber } = req.body; // Assuming `productNumber` is unique and provided for deletion
 
-        await medModel.findByIdAndDelete(req.body.id);
-        res.json({success:true,message:'med removed'});
+        // Find and delete the product
+        const deletedProduct = await ProductModel.findOneAndDelete({ productNumber });
+
+        if (!deletedProduct) {
+            return res.status(404).json({ message: "Product not found" });
+        }
+
+        res.status(200).json({ message: "Product deleted successfully", product: deletedProduct });
     } catch (error) {
-        console.log(error);
-        res.json({success:false,message:'error'});
+        res.status(500).json({ message: "Error deleting product", error: error.message });
     }
-}
+};
 
-
-
-export {addMed,listMed,removemed};
+module.exports = { addproduct, listproduct, deleteproduct };

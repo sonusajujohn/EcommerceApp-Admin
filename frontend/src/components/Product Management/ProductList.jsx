@@ -89,7 +89,6 @@ const ProductList = () => {
 
   return (
     <>
-    <AdminDashboard/>
     <div className="productlist">
       <div className="productlistTitle">
         Product Listing Page

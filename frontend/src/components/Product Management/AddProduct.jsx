@@ -86,13 +86,13 @@ const AddProduct = () => {
               </div>
               <div className="formInput">
                 <label>Category</label>
-                <input
+                  <input
                   type="text"
                   name="category"
                   placeholder="Enter category"
                   value={formData.category}
                   onChange={handleChange}
-                />
+                  />
               </div>
               <div className="formInput">
                 <label>Price (₹)</label>

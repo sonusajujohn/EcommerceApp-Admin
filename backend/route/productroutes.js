@@ -1,22 +1,28 @@
-import express from 'express'
-import { addproduct,listproduct,deleteproduct } from '../controllers/medcontroller.js';
-import multer from 'multer';
+const express = require('express');
+const { addproduct, listproduct, deleteproduct } = require('../controllers/productController');
 
-const productRouter=express.Router();
+// Create an instance of Router
+const productRouter = express.Router();
 
-//Image storage engine
+const multer = require('multer');
 
-const storage=multer.diskStorage({
-    destination:"uploads",
-    filename:(req,file,cb)=>{
-        return cb(null,`${Date.now()}${file.originalname}`)
-    }
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "uploads");
+    },
+    filename: (req, file, cb) => {
+        cb(null, `${Date.now()}-${file.originalname}`);
+    },
 });
 
-const upload=multer({storage:storage})
 
-productRouter.post('/add',upload.single('image'),addproduct);
-productRouter.get('/list',listproduct)
-productRouter.delete('/remove',deleteproduct);
+// Initialize multer with the storage configuration
+const upload = multer({ storage: storage });
 
-export default productRouter;
+// Define product-related routes
+productRouter.post('/addproduct', upload.single('image'), addproduct); // Add a product with an image
+productRouter.get('/listproduct', listproduct); // List all products
+productRouter.delete('/removeproduct', deleteproduct); // Delete a product
+
+// Export the router
+module.exports = productRouter;
