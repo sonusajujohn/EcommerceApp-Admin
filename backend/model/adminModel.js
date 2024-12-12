@@ -51,6 +51,11 @@ const adminSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  status: {
+    type: String,
+    enum: ['pending', 'approved', 'rejected'],
+    default: 'pending', // Default status is pending
+  },
 }, {
   timestamps: true, // Adds createdAt and updatedAt fields
 });

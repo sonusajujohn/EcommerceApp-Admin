@@ -82,14 +82,6 @@ function LandingPage() {
       <h5 className="feature-2">Casuals</h5>
       <h5 className="feature-3">Classic</h5>
       <h5 className="feature-4">Modern</h5>
-      <footer className="footer">
-        <p>Copyright © 2024 SHOZTOP Ecommerce-App. All rights reserved.</p>
-        <div className="footer__links">
-          <li><a href="#">Facebook</a></li>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">Twitter</a></li>
-        </div>
-      </footer>
     </div>
   );
 }

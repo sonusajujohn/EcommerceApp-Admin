@@ -1,61 +1,57 @@
-const ProductModel = require('../model/productModel'); // Import the product model
+const productModel=require('../model/productModel')
 
-// Add a product
-const addproduct = async (req, res) => {
+
+//GET OPERATION
+
+const listproduct = async (req,res)=>{
     try {
-        const { productName, productNumber, category, price, description } = req.body;
-        const image = req.file ? req.file.filename : null;
-
-        // Check if all required fields are provided
-        if (!productName || !productNumber || !category || !price || !description ) {
-            return res.status(400).json({ message: "All fields are required" });
-        }
-
-        // Create a new product instance
-        const newProductModel = new ProductModel({
-            productName,
-            productNumber,
-            category,
-            price,
-            description,
-            image,
-        });
-
-        // Save the product to the database
-        await newProductModel.save();
-
-        res.status(201).json({ message: "Product added successfully", product: newProductModel });
+        const data= await productModel.find();
+        res.status(200).send(data);
+        
     } catch (error) {
-        res.status(500).json({ message: "Error adding product", error: error.message });
+        res.status(404).send("DATA NOT FOUND");
     }
-};
+}
 
-// List all products
-const listproduct = async (req, res) => {
+
+//POST OPERATION 
+
+const addproduct = async (req,res)=>{
     try {
-        const products = await ProductModel.find(); // Retrieve all products from the database
-        res.status(200).json({ products });
+        var item=req.body;
+        const data=new productModel(item);
+        const savedata=await data.save();
+        res.status(200).send("POST OPERATION SUCCESSFULL");
     } catch (error) {
-        res.status(500).json({ message: "Error retrieving products", error: error.message });
+        res.status(404).send(error); 
     }
-};
+}
 
-// Delete a product
-const deleteproduct = async (req, res) => {
+
+// PUT OPERATION
+
+const updateproduct = async (req,res)=>{
     try {
-        const { productNumber } = req.body; // Assuming `productNumber` is unique and provided for deletion
-
-        // Find and delete the product
-        const deletedProduct = await ProductModel.findOneAndDelete({ productNumber });
-
-        if (!deletedProduct) {
-            return res.status(404).json({ message: "Product not found" });
-        }
-
-        res.status(200).json({ message: "Product deleted successfully", product: deletedProduct });
+        const id=req.params.id;
+        const data=await productModel.findByIdAndUpdate(id,req.body);
+        res.status(200).send("UPDATE OPERATION SUCCESSFULLY DONE")    
     } catch (error) {
-        res.status(500).json({ message: "Error deleting product", error: error.message });
+        res.status(404).send(error);
     }
-};
+}
 
-module.exports = { addproduct, listproduct, deleteproduct };
+
+// DELETE OPERATION
+
+const deleteproduct = async (req,res)=>{
+    try {
+         const id=req.params.id;
+         const data= await productModel.findByIdAndDelete(id);
+         res.status(200).send("DELETE OPERATION DONE SUCCESSFULLY");
+    } catch (error) {
+         res.status(404).send("DELETE OPERATION FAILED")
+    }
+}
+
+
+module.exports= {listproduct,addproduct,updateproduct,deleteproduct};

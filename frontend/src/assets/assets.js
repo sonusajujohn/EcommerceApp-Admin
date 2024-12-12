@@ -1,6 +1,13 @@
-import shoe from './shoe.png'
+import whatsapp from './whatsapp.png'
+import linkedin from './linkedin.png'
+import twitter from './twitter.png'
+import facebook from './facebook.png'
 
 export const assets ={
-    shoe
+    whatsapp,
+    linkedin,
+    twitter,
+    facebook
+    
 }
 
