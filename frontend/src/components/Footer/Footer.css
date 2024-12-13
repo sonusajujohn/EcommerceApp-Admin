@@ -13,6 +13,7 @@
   margin-top:0px ;
 }
 
+
 /* Container for footer content */
 .footer-content {
   display: flex;
@@ -151,18 +152,3 @@ hr {
   }
 }
 
-/* Ensure the footer stays at the bottom
-body, html {
-  height: 100%;
-  margin: 0;
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.content {
-  flex-grow: 1;
-} */
