@@ -1,0 +1,136 @@
+
+.order-details {
+    margin: 20px;
+    padding: 20px;
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f3f4f8; 
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+h2, h3, h4 {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+
+.customer-info, .payment-info, .shipping-info, .order-items, .order-summary, .order-status, .admin-notes {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #ffffff; 
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.customer-info h3, .payment-info h3, .shipping-info h3, .order-summary h3, .order-status h3, .admin-notes h3 {
+    background-color: #e5d8ff; 
+    padding: 10px;
+    border-radius: 5px;
+    color: #4b2c6f;
+    margin: -20px -20px 20px -20px; 
+}
+
+
+.order-items .order-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.order-items img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+button {
+    background-color: #8e44ad; 
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+}
+
+button:hover {
+    background-color: #7d3c98; 
+}
+
+button:disabled {
+    background-color: #c0a3e2; 
+}
+
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    background-color: #fafafa;
+    resize: vertical;
+}
+
+
+form > .order-summary,
+form > .admin-notes,
+form > .order-status {
+    margin-top: 30px;
+}
+
+p, span {
+    font-size: 14px;
+    color: #5f6368; 
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+h3, h4 {
+    color: #4b2c6f;
+}
+
+
+.order-status {
+    background-color: #f1f8ff;
+    border: 1px solid #a9b0b5;
+}
+
+.order-status .status-text {
+    color: #8e44ad;
+    font-weight: bold;
+}
+
+
+.customer-info {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+.customer-info p {
+    color: #34495e;
+}
+
+.customer-info h3 {
+    background-color: #e5d8ff; 
+    color: #4b2c6f;
+}
+
+
+.order-items .order-item:hover {
+    background-color: #f7f7f7; 
+    cursor: pointer;
+}

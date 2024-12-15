@@ -12,6 +12,7 @@ import {
   Visibility,
   VisibilityOff,
   Lock,
+  AttachMoney,
 } from "@mui/icons-material";
 
 const RegistrationForm = () => {
@@ -76,7 +77,7 @@ const RegistrationForm = () => {
               <input type="file" placeholder="Business License" />
             </div>
             <div className="input">
-              <Business className="icon" />
+              <AttachMoney className="icon" />
               <input type="number" placeholder="GST Number" />
             </div>
             <div className="input password">

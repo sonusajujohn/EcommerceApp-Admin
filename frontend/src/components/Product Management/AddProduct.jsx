@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './AddProduct.css';
+import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 
 const AddProductForm = () => {
   const [productData, setProductData] = useState({
-    image: null,
     brand: '',
     title: '',
     totalQuantity: '',
@@ -18,8 +18,10 @@ const AddProductForm = () => {
     selectedSizes: [] // Track selected sizes
   });
 
+  const [file, setFile] = useState(null);  // State for image file
+
   const handleImageChange = (e) => {
-    setProductData({ ...productData, image: URL.createObjectURL(e.target.files[0]) });
+    setFile(e.target.files[0]); // Save selected image file
   };
 
   const handleInputChange = (e) => {
@@ -28,37 +30,39 @@ const AddProductForm = () => {
   };
 
   const handleSizeSelection = (e, size) => {
-    const selectedSize = e.target.value;
+    const selectedSize = e.target.checked;
     setProductData(prevState => {
-      const newSelectedSizes = [...prevState.selectedSizes];
-      if (selectedSize && !newSelectedSizes.includes(selectedSize)) {
-        newSelectedSizes.push(selectedSize);
-      } else {
-        const index = newSelectedSizes.indexOf(selectedSize);
-        if (index > -1) {
-          newSelectedSizes.splice(index, 1);
-        }
-      }
+      const newSelectedSizes = selectedSize
+        ? [...prevState.selectedSizes, size]
+        : prevState.selectedSizes.filter(item => item !== size);
+
       return { ...prevState, selectedSizes: newSelectedSizes };
     });
   };
 
   const handleSizeQuantityChange = (e, size) => {
     const { value } = e.target;
-    setProductData({
-      ...productData,
-      sizeQuantities: { ...productData.sizeQuantities, [size]: value }
-    });
+    setProductData(prevState => ({
+      ...prevState,
+      sizeQuantities: { ...prevState.sizeQuantities, [size]: value }
+    }));
   };
 
   const handleCategoryChange = (e) => {
     const { name, value } = e.target;
-    setProductData({ ...productData, [name]: value });
+    setProductData(prevState => {
+      if (name === 'topCategory') {
+        // Reset subCategory when topCategory changes
+        return { ...prevState, [name]: value, subCategory: value === 'men' ? 'formals' : 'heels' };
+      }
+      return { ...prevState, [name]: value };
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(productData);
+    // alert("Product added successfully!");
+    console.log({ ...productData, image: file });
   };
 
   const menCategories = ['formals', 'casuals', 'boots', 'sandals/flipflops', 'sportswear', 'ethnic footwears'];
@@ -70,15 +74,35 @@ const AddProductForm = () => {
     <form onSubmit={handleSubmit} className="add-product-form">
       <div className="form-container">
         <div className="form-left">
-          <label>Upload Image</label>
-          <input type="file" accept="image/*" onChange={handleImageChange} />
-          {productData.image && <img src={productData.image} alt="Product" />}
-        </div>
-        <div className="form-right">
+        
+          <div className="imageUpload">
+            <img
+              src={
+                file
+                  ? URL.createObjectURL(file)
+                  : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+              }
+              alt="image preview"
+              className="image-preview"
+            />
+             <button className="upload-button">
+          <label htmlFor="file" className="upload-label">
+            Upload Image <DriveFolderUploadOutlinedIcon />
+          </label>
+        </button>
+            <input
+              type="file"
+              id="file"
+              onChange={(e) => handleImageChange(e)} // Updated to handle image change
+              style={{ display: "none" }}
+            />
+          </div>
+
           <div className="input-group">
             <label>Brand</label>
             <input type="text" name="brand" value={productData.brand} onChange={handleInputChange} />
           </div>
+
           <div className="input-group">
             <label>Title</label>
             <input type="text" name="title" value={productData.title} onChange={handleInputChange} />
@@ -92,9 +116,11 @@ const AddProductForm = () => {
             <input type="text" name="color" value={productData.color} onChange={handleInputChange} />
           </div>
           <div className="input-group">
-            <label>Price</label>
+            <label>Price(₹)</label>
             <input type="number" name="price" value={productData.price} onChange={handleInputChange} />
           </div>
+        </div>
+        <div className="form-right">
           <div className="input-group">
             <label>Discounted Price</label>
             <input type="number" name="discountedPrice" value={productData.discountedPrice} onChange={handleInputChange} />
@@ -149,6 +175,8 @@ const AddProductForm = () => {
             ))}
           </div>
           <button type="submit" className="add-product-btn">Add New Product</button>
+          
+
         </div>
       </div>
     </form>

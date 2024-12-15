@@ -8,6 +8,9 @@ import Login from './pages/Login/Login'
 import ProductList from './components/Product Management/Productlist'
 import AddProduct from './components/Product Management/Addproduct'
 import Category from './components/Category Management/Category'
+import Orderdetails from './components/Product Management/Orderdetails'
+import OrderDetails from './components/Product Management/Orderdetails'
+
 
 
 const App = () => {
@@ -22,6 +25,8 @@ const App = () => {
         <Route path='/productlist' element={<ProductList/>}></Route>
         <Route path='/addproduct' element={<AddProduct/>}></Route>
         <Route path='/categorymanagement' element={<Category/>}></Route>
+        <Route path='/orders/:orderId' element={<OrderDetails />} />
+
       </Routes>
     </div>
   )

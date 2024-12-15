@@ -67,6 +67,8 @@
   display: flex;
   flex-direction: column;
   gap: 25px;
+  box-shadow: none;
+  text-shadow: none;
 }
 
 .input {
