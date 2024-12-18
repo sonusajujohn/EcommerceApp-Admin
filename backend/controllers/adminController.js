@@ -1,5 +1,5 @@
 const adminModel = require('../model/adminModel');
-const fs = require('fs');
+const fs = require('fs').promises;
 const path = require('path');
 
 // Admin Registration (register API)
@@ -8,16 +8,13 @@ const registerAdmin = async (req, res) => {
     let businessLicenseFilename;
 
     try {
-        // Check if a file is uploaded via multer for business license
+        // Handle file upload
         if (req.file) {
-            // Use the uploaded file's filename for businessLicense
-            businessLicenseFilename = req.file.filename;
+            businessLicenseFilename = req.file.filename; // File uploaded via multer
         } else if (req.body.businessLicense) {
-            // Use the provided businessLicense URL from the request body
-            businessLicenseFilename = req.body.businessLicense;
+            businessLicenseFilename = req.body.businessLicense; // Provided business license URL
         } else {
-            // Fallback to a default file name if neither is provided
-            businessLicenseFilename = "default_business_license.pdf";
+            return res.status(400).json({ success: false, message: "Business license is required." });
         }
 
         // Validate required fields
@@ -43,6 +40,9 @@ const registerAdmin = async (req, res) => {
             return res.status(400).json({ success: false, message: "Admin already exists." });
         }
 
+        // Hash the password (TODO: Replace plain-text storage with hashing)
+        // const hashedPassword = await bcrypt.hash(password, 10); // Uncomment when using bcrypt
+
         // Create new admin
         const newAdmin = new adminModel({
             name,
@@ -52,10 +52,10 @@ const registerAdmin = async (req, res) => {
             pincode,
             govtIdType,
             govtId,
-            businessLicense: businessLicenseFilename, // Save the file name
+            businessLicense: businessLicenseFilename,
             gstNumber,
-            password,  // Store password as plain text
-            status: 'pending', // Initial status as 'pending'
+            password, // Use hashedPassword for secure storage
+            status: 'pending',
         });
 
         // Save new admin to database
@@ -63,7 +63,7 @@ const registerAdmin = async (req, res) => {
         res.status(201).json({ success: true, message: "Admin registration successful. Awaiting Superadmin approval." });
 
     } catch (error) {
-        console.error("Error during admin registration:", error);
+        console.error("Error during admin registration:", error.message);
         res.status(500).json({ success: false, message: "Error occurred during registration." });
     }
 };
@@ -72,37 +72,32 @@ const registerAdmin = async (req, res) => {
 const loginAdmin = async (req, res) => {
     const { email, password } = req.body;
 
-    // Validate input
     if (!email || !password) {
         return res.status(400).json({ success: false, message: "Email and password are required." });
     }
 
     try {
-        // Find admin by email
         const admin = await adminModel.findOne({ email });
         if (!admin) {
             return res.status(404).json({ success: false, message: "Admin not found." });
         }
 
-        // Check if admin is approved
         if (admin.status !== "approved") {
             return res.status(401).json({ success: false, message: "Admin is not approved yet." });
         }
 
-        // Check if entered password matches the stored password
-        if (password === admin.password) {
+        if (password === admin.password) { // Replace this with hashed password comparison
             res.json({ success: true, message: "Login successful." });
         } else {
             return res.status(401).json({ success: false, message: "Invalid credentials." });
         }
-
     } catch (error) {
-        console.error("Error during admin login:", error);
+        console.error("Error during admin login:", error.message);
         res.status(500).json({ success: false, message: "Error occurred during login." });
     }
 };
 
-// Superadmin approves or rejects admin registration (approveReject API)
+// Superadmin approves/rejects admin (approveReject API)
 const approveRejectAdmin = async (req, res) => {
     const { adminId, action } = req.body;
 
@@ -110,19 +105,16 @@ const approveRejectAdmin = async (req, res) => {
         return res.status(400).json({ success: false, message: "Admin ID and action are required." });
     }
 
-    // Validate action
     if (!['approve', 'reject'].includes(action)) {
         return res.status(400).json({ success: false, message: "Invalid action. Use 'approve' or 'reject'." });
     }
 
     try {
-        // Find admin by ID
         const admin = await adminModel.findById(adminId);
         if (!admin) {
             return res.status(404).json({ success: false, message: "Admin not found." });
         }
 
-        // Handle approval or rejection
         if (action === "approve") {
             admin.status = "approved";
             await admin.save();
@@ -131,63 +123,45 @@ const approveRejectAdmin = async (req, res) => {
             await adminModel.findByIdAndDelete(adminId);
             res.json({ success: true, message: "Admin registration rejected and removed." });
         }
-
     } catch (error) {
-        console.error("Error during admin approval/rejection:", error);
+        console.error("Error during admin approval/rejection:", error.message);
         res.status(500).json({ success: false, message: "Error occurred while processing the request." });
     }
 };
 
-// List Admin Items (listadmin API)
+// List Admins (listadmin API)
 const listadmin = async (req, res) => {
     try {
-        // Fetch all admins
         const admins = await adminModel.find({});
         res.status(200).json({ success: true, data: admins });
     } catch (error) {
-        console.error("Error fetching admins:", error);
+        console.error("Error fetching admins:", error.message);
         res.status(500).json({ success: false, message: "Error fetching admins." });
     }
 };
 
-// Delete Admin Item (deleteadmin API)
+// Delete Admin (deleteadmin API)
 const deleteadmin = async (req, res) => {
     const id = req.params.id;
 
     try {
-        // Find admin by ID
         const admin = await adminModel.findById(id);
         if (!admin) {
             return res.status(404).json({ success: false, message: "Admin not found." });
         }
 
-        // Delete associated business license file if it exists
         if (admin.businessLicense) {
-            const businessLicensePath = path.join(__dirname, '../uploads/business_licenses', admin.businessLicense);
-            console.log("Attempting to delete business license at:", businessLicensePath); // Log the file path for debugging
-
-            // Check if the file exists before attempting deletion
-            fs.exists(businessLicensePath, (exists) => {
-                if (exists) {
-                    fs.unlink(businessLicensePath, (err) => {
-                        if (err) {
-                            console.error("Error deleting business license:", err.message);
-                            return res.status(500).json({ success: false, message: "Failed to delete business license" });
-                        }
-                        console.log("Business license deleted successfully");
-                    });
-                } else {
-                    console.warn("Business license file not found:", businessLicensePath);
-                }
-            });
+            const filePath = path.join(__dirname, '../uploads/business_license', admin.businessLicense);
+            try {
+                await fs.unlink(filePath);
+                console.log("Business license deleted successfully.");
+            } catch (err) {
+                console.warn("Business license file not found:", filePath);
+            }
         }
 
-        // Delete the admin from the database
         await adminModel.findByIdAndDelete(id);
-
-        // Success response
-        res.status(200).json({ success: true, message: "Admin removed." });
-
+        res.status(200).json({ success: true, message: "Admin removed successfully." });
     } catch (error) {
         console.error("Error deleting admin:", error.message);
         res.status(500).json({ success: false, message: "Error deleting admin." });

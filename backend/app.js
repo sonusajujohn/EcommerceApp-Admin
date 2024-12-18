@@ -19,6 +19,9 @@ app.use('/api/product', productRoutes);
 
 app.use('/uploads', express.static('uploads'));
 
+app.use('/business_license', express.static('business_licenses'));
+
+
 // const categroyRoutes= require('./route/categoryRoutes');
 // app.use('/api/category',categroyRoutes)
 

@@ -10,7 +10,6 @@ import ProductList from './components/Product Management/ProductList'
 import AddProduct from './components/Product Management/Addproduct'
 import Category from './components/Category Management/Category'
 
-// dhugiydsgiadshsojhshdsho
 
 
 const App = () => {

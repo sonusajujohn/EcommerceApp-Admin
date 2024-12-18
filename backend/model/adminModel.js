@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt"); // For password hashing
 
 const adminSchema = new mongoose.Schema(
   {
@@ -68,16 +67,7 @@ const adminSchema = new mongoose.Schema(
     gstNumber: {
       type: String,
       required: true,
-      trim: true,
-      validate: {
-        validator: function (value) {
-          console.log("Validating GST Number:", value); // Log the GST number
-          const gstRegex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[A-Z0-9]{1}Z[A-Z0-9]{1}$/;
-          return gstRegex.test(value);
-        },
-        message: 'Invalid GST number format.',
-      },
-    },    
+  },
     password: {
       type: String,
       required: true,
