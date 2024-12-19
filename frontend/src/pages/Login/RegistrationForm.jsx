@@ -236,6 +236,7 @@
 
 import React, { useState } from "react";
 import axios from "axios";
+import './RegistrationForm.css'
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -286,7 +287,7 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div>
+    <div className="conatiner1">
       <h2>Admin Registration</h2>
       <form onSubmit={handleSubmit}>
         <div>

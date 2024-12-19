@@ -36,6 +36,7 @@ import {
   Legend,
   ArcElement,
 } from "chart.js";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 // Register Chart.js components
 ChartJS.register(
@@ -163,29 +164,7 @@ const AdminDashboard = () => {
   return (
     <div className="dashboard-container">
       {/* Sidebar */}
-      <div className="sidebar">
-        <h2 className="sidebar-title">Admin</h2>
-        <ul className="sidebar-menu">
-          <li className="sidebar-item" onClick={() => navigate("/admindashboard")}>
-            <DashboardIcon className="sidebar-icon" /> Dashboard
-          </li>
-          <li className="sidebar-item" onClick={() => navigate("/productlist")}>
-            <InventoryIcon className="sidebar-icon" /> ProductManagement
-          </li>
-          <li className="sidebar-item" onClick={() => navigate("/categorymanagement")}>
-            <CategoryIcon className="sidebar-icon" /> CategoryManagement
-          </li>
-          <li className="sidebar-item" onClick={() => navigate("/orders")}>
-            <ShoppingCartIcon className="sidebar-icon" /> OrderManagement
-          </li>
-          <li className="sidebar-item" onClick={() => navigate("/users")}>
-            <PeopleIcon className="sidebar-icon" /> UserManagement
-          </li>
-          <li className="sidebar-item" onClick={() => navigate("/")}>
-            <LogoutIcon className="sidebar-icon" /> Logout
-          </li>
-        </ul>
-      </div>
+      <Sidebar/>
 
       {/* Main Content */}
       <div className="main-content">

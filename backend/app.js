@@ -22,11 +22,11 @@ app.use('/uploads', express.static('uploads'));
 app.use('/business_license', express.static('business_licenses'));
 
 
-// const categroyRoutes= require('./route/categoryRoutes');
-// app.use('/api/category',categroyRoutes)
-
-const adminRoutes = require('./route/adminRoutes');
+const adminRoutes = require('./route/adminroutes');
 app.use('/admin',adminRoutes);
+
+const offerRoutes = require('./route/offerRoutes');
+app.use('/api/offer',offerRoutes);
 
 
 

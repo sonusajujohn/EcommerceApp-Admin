@@ -1,0 +1,153 @@
+
+
+.order-management {
+    padding: 40px;
+    background-color: #e5e3e3;
+    border-radius: 8px;
+    width: 100vw; 
+    height: 100vh; 
+    margin: 0;
+    box-sizing: border-box; 
+  }
+  
+    
+    h2 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    
+    /* Filters Section */
+    .filters {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    
+    .filters input,
+    .filters select {
+      border-radius: 5px;
+      padding: 8px 12px;
+      font-size: 14px;
+      border: 1px solid #dcdcdc;
+    }
+    
+    .filters input {
+      width: 300px;
+    }
+    
+    .filters select {
+      width: 200px;
+    }
+    
+    /* Table Styling */
+    .ant-table {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .ant-table th {
+      background-color: #f7f7f7;
+      font-weight: 600;
+      color: #555;
+      font-size: 16px;
+    }
+    
+    .ant-table td {
+      font-size: 14px;
+      color: #333;
+    }
+    
+    .ant-table td button {
+      background-color: #1890ff;
+      border-color: #1890ff;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .ant-table td button:hover {
+      background-color: #40a9ff;
+      border-color: #40a9ff;
+    }
+    
+    /* Select Dropdown */
+    .ant-select {
+      width: 100%;
+    }
+    
+    .ant-select-selector {
+      padding: 4px 8px;
+      border-radius: 5px;
+      border: 1px solid #dcdcdc;
+    }
+    
+    /* Table Row Actions */
+    .ant-table td .ant-select {
+      width: 120px;
+    }
+    
+    .ant-table td .ant-select-selector {
+      font-size: 13px;
+      text-align: center;
+    }
+    
+    /* Pagination */
+    .ant-pagination {
+      margin-top: 20px;
+      text-align: center;
+    }
+    
+    .ant-pagination-item {
+      border-radius: 50%;
+      padding: 6px 12px;
+    }
+    
+    .ant-pagination-item:hover {
+      background-color: #1890ff;
+      color: rgb(249, 249, 249);
+    }
+    
+    .ant-pagination-item-active {
+      background-color: #1890ff;
+      color: white;
+    }
+    
+    /* Notification Styling */
+    .ant-notification {
+      font-size: 14px;
+      border-radius: 8px;
+    }
+    
+    /* Loading Spinner */
+    .ant-spin-dot {
+      font-size: 30px;
+      color: #1890ff;
+    }
+    
+    /* Responsiveness */
+    @media (max-width: 768px) {
+      .filters {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    
+      .filters input,
+      .filters select {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    
+      .order-management {
+        padding: 15px;
+      }
+    
+      .ant-table {
+        font-size: 12px;
+      }
+    }
+    

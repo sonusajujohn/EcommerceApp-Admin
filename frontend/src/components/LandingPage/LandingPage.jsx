@@ -12,52 +12,47 @@ function LandingPage() {
     const scrollRevealOption = {
       distance: "50px",
       origin: "bottom",
-      duration: 1000,
+      duration: 500,
     };
 
     ScrollReveal().reveal(".container .letter-z", {
-      duration: 1000,
+      duration: 500,
       delay: 500,
     });
 
     ScrollReveal().reveal(".nav__links.nav__left li, .nav__links.nav__right li", {
       duration: 2000,
       interval: 300,
-      delay: 2000,
+      delay: 500,
     });
 
     ScrollReveal().reveal(".text__left", {
       ...scrollRevealOption,
       origin: "left",
-      delay: 1500,
+      delay: 2000,
     });
 
     ScrollReveal().reveal(".text__right", {
       ...scrollRevealOption,
       origin: "right",
-      delay: 1500,
+      delay: 2000,
     });
 
     ScrollReveal().reveal(".explore", {
       duration: 3000,
-      delay: 7000,
+      delay: 5000,
     });
 
     ScrollReveal().reveal(".feature-1, .feature-2, .feature-3, .feature-4", {
       duration: 1000,
       interval: 500,
-      delay: 4000,
-    });
-
-    ScrollReveal().reveal(".footer p", {
-      duration: 1000,
-      delay: 4000,
+      delay: 3000,
     });
 
     ScrollReveal().reveal(".footer__links li", {
       duration: 1000,
       interval: 300,
-      delay: 4500,
+      delay: 2500,
     });
   }, []);
 

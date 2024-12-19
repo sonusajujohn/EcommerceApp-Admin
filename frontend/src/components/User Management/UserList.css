@@ -1,0 +1,65 @@
+/* Container for sidebar and main content */
+.container2 {
+    display: flex;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    
+  }
+ 
+  
+  /* Main content styles */
+  .main-content {
+    margin-top: 0px;
+    margin-left: 20px;
+    padding: 20px;
+    width: calc(100% - 250px);
+    overflow-y: auto;
+    
+  }
+  
+  /* Table styles */
+  .user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .user-table th, .user-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .user-table th {
+    background-color: #f4f4f4;
+  }
+
+  
+  /* Button styles */
+  .edit-btn {
+    padding:10px 10px;
+    margin-left: 10px;
+    color: whitesmoke;
+    border: 2px solid white;
+    background-color: rgb(0, 168, 0);
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .ban-btn {
+    padding: 10px 5px;
+    color: whitesmoke;
+    border: 2px solid white;
+    background-color: red;
+    border-radius: 10px;
+    margin-left:10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .edit-btn:hover, .ban-btn:hover {
+    opacity: 0.8;
+  }
+  

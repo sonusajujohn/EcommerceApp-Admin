@@ -32,7 +32,6 @@ const AdminSidebar = () => {
           <li > <img className='logo' src={assets.seller} alt="seller logo" /> ApprovedAdmins</li>
           <li onClick={()=>{navigate('/adminrequests')}}> <img className='logo' src={assets.users} alt="users logo" />AdminRequests</li>
           <li onClick={()=>{navigate('/addadmin')}}> <img className='logo' src={assets.dashboard} alt="dashboard logo"/> AddAdmin</li>
-          <li> <img className='logo' src={assets.order} alt="order logo" /> Orders</li>
          
         </ul>
       </div>

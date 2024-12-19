@@ -1,8 +1,9 @@
+import "./ProductList.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./ProductList.css";
+import Sidebar from "../Sidebar/Sidebar";
 
 const ProductList = () => {
   const navigate = useNavigate();
@@ -12,9 +13,9 @@ const ProductList = () => {
   // Fetch products from the database
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/product/listproduct")
+      .get("http://localhost:5000/api/product/listproducts")
       .then((response) => {
-        console.log("API Response:", response.data);
+        console.log("Product Data:", response.data);
         setProducts(response.data);
       })
       .catch((err) => {
@@ -34,11 +35,19 @@ const ProductList = () => {
       brand: "Updated Brand",
       title: "Updated Product Title",
       color: "Updated Color",
-      price: 1200,
-      discountedPrice: 999,
-      discountedPercentage: 16.8,
-      topCategory: "men",
-      subCategory: "casuals",
+      price: 1500,
+      totalQuantity: 100,
+      sizeQuantities: {
+        "6": 10,
+        "7": 15,
+        "8": 20,
+        "9": 30,
+        "10": 15,
+        "11": 10,
+      },
+      // description: "Updated product description",
+      // topCategory: "women",
+      // subCategory: "heels",
     };
 
     axios
@@ -58,18 +67,28 @@ const ProductList = () => {
 
   // Handle Delete (DELETE) request
   const handleDelete = (productId) => {
-    axios
-      .delete(`http://localhost:5000/api/product/deleteproduct/${productId}`)
-      .then((response) => {
-        console.log("Product deleted:", response.data);
-        setProducts((prevProducts) =>
-          prevProducts.filter((product) => product._id !== productId)
-        );
-      })
-      .catch((err) => {
-        console.error("Error deleting product:", err);
-      });
+    // Show confirmation dialog before deleting
+    const isConfirmed = window.confirm("Are you sure you want to delete this product?");
+    
+    if (isConfirmed) {
+      axios
+        .delete(`http://localhost:5000/api/product/deleteproduct/${productId}`)
+        .then((response) => {
+          console.log("Product deleted:", response.data);
+          setProducts((prevProducts) =>
+            prevProducts.filter((product) => product._id !== productId)
+          );
+        })
+        .catch((err) => {
+          console.error("Error deleting product:", err);
+        });
+    } else {
+      console.log("Delete operation canceled.");
+    }
   };
+  
+
+  
 
   // Define columns for the DataGrid
   const actionColumn = [
@@ -77,56 +96,54 @@ const ProductList = () => {
       field: "action",
       headerName: "Action",
       width: 250,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            <button
-              className="viewButton"
-              onClick={() => alert(`Viewing product: ${params.row.title}`)}
-            >
-              View
-            </button>
-            <button
-              className="editButton"
-              onClick={() => handleEdit(params.row._id)}
-            >
-              Edit
-            </button>
-            <button
-              className="deleteButton"
-              onClick={() => handleDelete(params.row._id)}
-            >
-              Delete
-            </button>
-          </div>
-        );
-      },
+      renderCell: (params) => (
+        <div className="cellAction">
+          <button
+            className="editButton"
+            onClick={() => handleEdit(params.row._id)}
+          >
+            Edit
+          </button>
+          <button
+            className="deleteButton"
+            onClick={() => handleDelete(params.row._id)}
+          >
+            Delete
+          </button>
+        </div>
+      ),
     },
   ];
 
   const productColumns = [
     { field: "_id", headerName: "ID", width: 120 },
-    { field: "image", headerName: "Image", width: 150, renderCell: (params) => (
-        <img src={params.row.image} alt={params.row.title} style={{ width: "100px", height: "auto" }} />
+    {
+      field: "image",
+      headerName: "Image",
+      width: 150,
+      renderCell: (params) => (
+        <img
+          src={`http://localhost:5000/${params.row.image}`} // Adjust the URL if required
+          alt={params.row.title}
+          style={{ width: "100px", height: "auto" }}
+        />
       ),
     },
     { field: "brand", headerName: "Brand", width: 150 },
     { field: "title", headerName: "Title", width: 200 },
     { field: "color", headerName: "Color", width: 120 },
-    { field: "price", headerName: "Price (₹)", width: 100 },
-    // { field: "discountedPrice", headerName: "Discounted Price (₹)", width: 150 },
-    // { field: "discountedPercentage", headerName: "Discount %", width: 150 },
-    { field: "topCategory", headerName: "Top Category", width: 120 },
+    { field: "price", headerName: "Price (₹)", width: 120 },
+    { field: "totalQuantity", headerName: "Total Quantity", width: 150 },
+    { field: "topCategory", headerName: "Top Category", width: 150 },
     { field: "subCategory", headerName: "Sub Category", width: 180 },
+    // { field: "description", headerName: "Description", width: 250 },
   ];
 
   return (
+    <div className="dashboard-container">
     <div className="productlist">
       <div className="productlistTitle">
         Product Listing Page
-        <button className="addButton" onClick={handleAddNew}>
-          Add Product
-        </button>
       </div>
       {error && <p className="errorMessage">{error}</p>}
       <DataGrid
@@ -139,7 +156,10 @@ const ProductList = () => {
         getRowId={(row) => row._id}
       />
     </div>
+    </div>
   );
 };
 
 export default ProductList;
+
+

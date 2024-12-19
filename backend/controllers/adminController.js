@@ -141,6 +141,7 @@ const listadmin = async (req, res) => {
 };
 
 // Delete Admin (deleteadmin API)
+// Delete Admin (deleteadmin API)
 const deleteadmin = async (req, res) => {
     const id = req.params.id;
 
@@ -167,5 +168,6 @@ const deleteadmin = async (req, res) => {
         res.status(500).json({ success: false, message: "Error deleting admin." });
     }
 };
+
 
 module.exports = { registerAdmin, approveRejectAdmin, loginAdmin, listadmin, deleteadmin };

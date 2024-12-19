@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import './Login.css';
 import axios from 'axios';
 import { assets } from '../../assets/assets';
+import { useNavigate } from 'react-router-dom';
+import {toast} from "react-toastify"
 
 const Login = ({ setShowLogin }) => {
   const [data, setData] = useState({
     email: '',
     password: '',
   });
+  
+  const navigate = useNavigate();
 
   const onChangeHandler = (event) => {
     const name = event.target.name;
@@ -22,7 +26,9 @@ const Login = ({ setShowLogin }) => {
     try {
       const response = await axios.post(newUrl, data);
       if (response.data.success) {
+        toast.success(response.data.message)
         setShowLogin(false); // Close the popup on successful login
+        navigate('/admindashboard');
       } else {
         alert(response.data.message);
       }

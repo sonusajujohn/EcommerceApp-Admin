@@ -8,6 +8,8 @@ import view from './view.png'
 import add from './add.png'
 import edit from './edit.png'
 import del from './delete.png'
+import productlist from './productlist.png'
+import approve from './approve.png'
 
 export const assets = {
     dashboard,
@@ -19,5 +21,7 @@ export const assets = {
     view,
     add,
     edit,
-    del
+    del,
+    productlist,
+    approve
 }

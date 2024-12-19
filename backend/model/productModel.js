@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
   image: {
-    type: String, // Store the image URL as a string
+    type: String, 
     required: true,
   },
   brand: {
@@ -54,8 +54,22 @@ const productSchema = new mongoose.Schema({
       'heels', 'flats', 'casualshoes', 'sportsshoes', 'ethnic footwear', 'boots', // for women
     ],
   },
+  offer: {
+    discount: { type: Number, default: 0 }, // Percentage discount, e.g., 10 for 10% off
+    startDate: { type: Date },
+    endDate: { type: Date },
+    description: { type: String }, // A brief description of the offer
+  },
 }, {
-  timestamps: true, // Automatically adds createdAt and updatedAt fields
+  timestamps: true,
+});
+
+// Virtual field to calculate discount price dynamically
+productSchema.virtual('discountedPrice').get(function () {
+  if (this.discount && this.discount > 0) {
+      return this.price - (this.price * (this.discount / 100));
+  }
+  return this.price;
 });
 
 const productData = mongoose.model('product', productSchema);

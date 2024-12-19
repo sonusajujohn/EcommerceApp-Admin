@@ -11,7 +11,7 @@ const Footer = () => {
             {/* Left Section */}
             <div className="footer-content-left">
               <img style={{ width: '60px', height: '60px' }} src={assets.favicon} alt="Logo" />
-              <p style={{ textAlign: 'justify', color: 'purple' ,marginLeft:"0px",marginRight:"20px"}}>
+              <p style={{ textAlign: 'justify',fontSize:"16px", color: 'rgb(255, 0, 255)' ,marginLeft:"0px",marginRight:"30px"}}>
                 Stay updated with us for the latest releases, find the perfect spot, and let the movie magic begin—all in just a few clicks.
               </p>
               <div className="footer-social-icons">
@@ -19,6 +19,7 @@ const Footer = () => {
                 <img src={assets.facebook} alt="Facebook logo" />
                 <img src={assets.twitter} alt="Twitter logo" />
                 <img src={assets.linkedin} alt="LinkedIn logo" />
+                <img src={assets.instagram} alt="LinkedIn logo" />
               </div>
             </div>
 

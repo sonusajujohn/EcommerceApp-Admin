@@ -30,8 +30,8 @@ const Sidebar = () => {
           <li> <img className='logo' src={assets.dashboard} alt="dashboard logo" />Dashboard</li>
           <p className="title">LISTS</p>
           <li onClick={()=>{navigate('/adminpage')}}> <img className='logo' src={assets.seller} alt="seller logo" /> Sellers</li>
-          <li> <img className='logo' src={assets.users} alt="users logo" /> Users</li>
-          <li onClick={()=>{navigate('/productlist')}}> <img className='logo' src={assets.dashboard} alt="dashboard logo" /> Products</li>
+          <li onClick={()=>{navigate('/productlist')}}> <img className='logo' src={assets.productlist} alt="dashboard logo" /> Products</li>
+          <li onClick={()=>{navigate('/userlist')}}> <img className='logo' src={assets.users} alt="users logo" /> Users</li>
           <li> <img className='logo' src={assets.order} alt="order logo" /> Orders</li>
           <p className="title">USER</p>
           <li> <img className='logo' src={assets.profile} alt="profile logo" /> Profile</li>

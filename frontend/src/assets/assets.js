@@ -7,6 +7,9 @@ import banner2 from './shoebanner2.webp'
 import banner3 from './shoebanner3.webp'
 import upload_area from './upload_area.png'
 import close from './close.png'
+import edit from './edit.png'
+import del from './delete.png'
+import instagram from './instagram.png'
 
 export const assets ={
     whatsapp,
@@ -17,7 +20,10 @@ export const assets ={
     banner2,
     banner3,
     upload_area,
-    close
+    close,
+    edit,
+    del,
+    instagram
     
 }
 

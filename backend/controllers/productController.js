@@ -6,6 +6,7 @@ const path = require('path');
 const listProduct = async (req, res) => {
     try {
         const data = await productModel.find();
+        
         res.status(200).json(data);  // Sending the data in JSON format
     } catch (error) {
         console.error('Error in listProduct:', error.message);

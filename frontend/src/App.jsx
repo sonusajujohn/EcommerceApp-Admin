@@ -8,7 +8,11 @@ import RegistrationForm from './pages/Login/RegistrationForm'
 import AdminDashboard from './pages/AdminDashboard/Admindashboard'
 import ProductList from './components/Product Management/ProductList'
 import AddProduct from './components/Product Management/Addproduct'
-import Category from './components/Category Management/Category'
+import OrderManagement from './components/Order Management/OrderManagement'
+import UserList from './components/User Management/UserList'
+
+
+
 
 
 
@@ -24,7 +28,8 @@ const App = () => {
         <Route path='/admindashboard' element={<AdminDashboard/>}></Route>
         <Route path='/productlist' element={<ProductList/>}></Route>
         <Route path='/addproduct' element={<AddProduct/>}></Route>
-        <Route path='/categorymanagement' element={<Category/>}></Route>
+        <Route path='/orders' element={<OrderManagement/>}></Route>
+        <Route path='/users' element={<UserList/>}></Route>
       </Routes>
     </div>
   )

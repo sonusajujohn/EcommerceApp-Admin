@@ -23,10 +23,10 @@ const AdminList = () => {
             });
     }, []);
 
-    // Ban admin function (replace delete with ban button)
+
     const handleBanAdmin = (adminId) => {
         if (window.confirm("Are you sure you want to ban this admin?")) {
-            axios.patch(`http://localhost:5000/admin/ban/${adminId}`) // Update URL to ban admin
+            axios.delete(`http://localhost:5000/admin/delete/${adminId}`) // Update URL to ban admin
                 .then(response => {
                     alert(response.data.message);
                     setAdminList(prevAdmins => prevAdmins.filter(admin => admin._id !== adminId));
