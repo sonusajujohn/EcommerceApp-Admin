@@ -10,6 +10,7 @@ import close from './close.png'
 import edit from './edit.png'
 import del from './delete.png'
 import instagram from './instagram.png'
+import logo from './logo.png'
 
 export const assets ={
     whatsapp,
@@ -23,7 +24,8 @@ export const assets ={
     close,
     edit,
     del,
-    instagram
+    instagram,
+    logo
     
 }
 

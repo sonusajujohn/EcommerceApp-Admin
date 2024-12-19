@@ -27,7 +27,7 @@ const Sidebar = () => {
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
-          <li> <img className='logo' src={assets.dashboard} alt="dashboard logo" />Dashboard</li>
+          <li > <img className='logo' src={assets.dashboard} alt="dashboard logo" />Dashboard</li>
           <p className="title">LISTS</p>
           <li onClick={()=>{navigate('/adminpage')}}> <img className='logo' src={assets.seller} alt="seller logo" /> Sellers</li>
           <li onClick={()=>{navigate('/productlist')}}> <img className='logo' src={assets.productlist} alt="dashboard logo" /> Products</li>

@@ -15,7 +15,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
   return (
     <div className="sidebar">
-      <h2 className="sidebar-title">ADMIN</h2>
+      <h2 className="sidebar-title" onClick={() => navigate("/admindashboard")}>ADMIN</h2>
       <ul className="sidebar-menu">
         <li className="sidebar-item" onClick={() => navigate("/admindashboard")}>
           <DashboardIcon className="sidebar-icon" /> Dashboard

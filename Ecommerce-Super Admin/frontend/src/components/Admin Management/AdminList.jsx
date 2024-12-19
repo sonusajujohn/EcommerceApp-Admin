@@ -51,7 +51,7 @@ const AdminList = () => {
                         <div>Email</div>
                         <div>Phone</div>
                         <div>GST</div>
-                        <div>Business Number</div>
+                        {/* <div>Business Number</div> */}
                         <div>Government ID</div>
                         <div>Status</div>
                         <div>Actions</div>
@@ -62,7 +62,7 @@ const AdminList = () => {
                             <div>{admin.email}</div>
                             <div>{admin.phoneNumber}</div>
                             <div>{admin.gstNumber}</div>
-                            <div>{admin.businessLicense}</div>
+                            {/* <div>{admin.businessLicense}</div> */}
                             <div>{admin.govtId}</div>
                             <div>{admin.status}</div>
                             <div className="cellAction">

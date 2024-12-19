@@ -643,6 +643,7 @@ const AddProduct = () => {
           { headers: { "Content-Type": "multipart/form-data" } }
         );
         setSuccess("Product added successfully!");
+        alert('Product Added Successfully')
       }
 
       // Reset form after successful operation

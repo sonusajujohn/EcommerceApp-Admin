@@ -175,7 +175,6 @@ const AdminDashboard = () => {
             <CardContent>
               <div className="achievement-header">
                 <Typography variant="h6" sx={{ letterSpacing: ".25px" }}>
-                  Shop with Shoztop
                 </Typography>
                 <img
                   src="https://cdn-icons-png.flaticon.com/512/2784/2784439.png"

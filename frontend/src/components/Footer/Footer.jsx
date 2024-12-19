@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="footer-content">
             {/* Left Section */}
             <div className="footer-content-left">
-              <img style={{ width: '60px', height: '60px' }} src={assets.favicon} alt="Logo" />
+              <img style={{ width: '80px', height: 'auto',marginLeft:'115px' }} src={assets.logo} alt="Logo" />
               <p style={{ textAlign: 'justify',fontSize:"16px", color: 'rgb(255, 0, 255)' ,marginLeft:"0px",marginRight:"30px"}}>
                 Stay updated with us for the latest releases, find the perfect spot, and let the movie magic begin—all in just a few clicks.
               </p>

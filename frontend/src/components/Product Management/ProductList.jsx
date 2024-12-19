@@ -258,18 +258,19 @@ const ProductList = () => {
 
   const productColumns = [
     { field: "_id", headerName: "ID", width: 120 },
-    {
-      field: "image",
-      headerName: "Image",
-      width: 150,
-      renderCell: (params) => (
-        <img
-          src={`http://localhost:5000/${params.row.image}`} // Adjust the URL if required
-          alt={params.row.title}
-          style={{ width: "100px", height: "auto" }}
-        />
-      ),
-    },
+    // {
+    //   field: "image",
+    //   headerName: "Image",
+    //   width: 150,
+    //   renderCell: (params) => (
+    //     <img
+    //     src={`http://localhost:5000/api/product/listproducts${params.row.image}`}
+    //     // Use the image URL from the product data
+    //       alt={params.row.title}
+    //       style={{ width: "100px", height: "auto", borderRadius: "8px" }}
+    //     />
+    //   ),
+    // },
     { field: "brand", headerName: "Brand", width: 120 },
     { field: "title", headerName: "Title", width: 200 },
     { field: "color", headerName: "Color", width: 120 },
@@ -278,6 +279,7 @@ const ProductList = () => {
     { field: "topCategory", headerName: "Top Category", width: 150 },
     { field: "subCategory", headerName: "Sub Category", width: 180 },
   ];
+  
 
   return (
     <div className="dashboard-container">
